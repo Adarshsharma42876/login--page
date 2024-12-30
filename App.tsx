@@ -1,117 +1,94 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useState } from "react";
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
   View,
-} from 'react-native';
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from "react-native";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const App = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const handleLogin = () => {
+    Alert.alert("Login Info", `Username: ${username}\nPassword: ${password}`);
+    // Add authentication logic here
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your username"
+          value={username}
+          onChangeText={setUsername}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your password"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+      </View>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f4f4f9",
+    padding: 20,
   },
-  sectionTitle: {
+  title: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 30,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  inputContainer: {
+    width: "100%",
+    marginBottom: 15,
   },
-  highlight: {
-    fontWeight: '700',
+  label: {
+    marginBottom: 5,
+    fontSize: 16,
+    color: "#555",
+  },
+  input: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    backgroundColor: "#fff",
+  },
+  button: {
+    marginTop: 20,
+    width: "100%",
+    padding: 15,
+    backgroundColor: "#007bff",
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
