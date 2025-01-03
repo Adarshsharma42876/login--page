@@ -10,7 +10,7 @@ const LoginPage = () => {
             Alert.alert('Error', 'Please fill in both fields.');
             return;
         }
-        Alert.alert('Success', `Logged in as: ${email}`);
+        Alert.alert('Success', `Logged in  : ${email}`);
     };
 
     return (
