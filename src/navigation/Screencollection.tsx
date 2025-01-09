@@ -1,17 +1,18 @@
 import LoginScreen from '../screens/auth/LoginScreen';
+import SignUpScreen from '../screens/auth/RegisterScreen';
 import BottomTab from './BottomTab';
 
 export const authStack = [
   {
-    name: 'Loginscreen',
+    name: 'Login',
     component: LoginScreen,
   },
 ];
 
 export const dashboardStack = [
   {
-    name: 'BottomTab',
-    component: BottomTab,
+    name: 'SignUp',
+    component: SignUpScreen,
   },
 ];
 
