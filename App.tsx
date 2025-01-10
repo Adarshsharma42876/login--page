@@ -1,10 +1,14 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import LoginPage from './src/screens/auth/LoginScreen';
-import Navigation from './src/navigation/Navigation';
+import React from 'react'
+import Navigation from './src/navigation/Navigation'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const App = () => {
-  return <Navigation />;
-};
+  const queryClient = new QueryClient();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Navigation />
+    </QueryClientProvider>
+  )
+}
 
-export default App;
+export default App
