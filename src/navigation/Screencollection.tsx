@@ -1,19 +1,19 @@
-import LoginScreen from '../screens/auth/LoginScreen'
-import SignUpScreen from '../screens/auth/RegisterScreen'
-import BottomTab from './BottomTab'
+import LoginScreen from '../screens/auth/LoginScreen';
+import BottomTab from './BottomTab';
 
 export const authStack = [
   {
-    name: 'Login',
+    name: 'Loginscreen',
     component: LoginScreen,
   },
-]
+  
+];
 
 export const dashboardStack = [
   {
-    name: 'SignUp',
-    component: SignUpScreen,
+    name: 'BottomTab',
+    component: BottomTab,
   },
-]
+];
 
-export const mergeStack = [...dashboardStack, ...authStack]
+export const mergeStack = [...dashboardStack, ...authStack];

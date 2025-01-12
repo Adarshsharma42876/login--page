@@ -1,14 +1,26 @@
-import React from 'react'
-import Navigation from './src/navigation/Navigation'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreen from "./src/screens/Auth/LoginScreen";
+import SignUpScreen from "./src/screens/Auth/RegisterScreen";
 
-const App = () => {
-  const queryClient = new QueryClient();
+const Stack = createStackNavigator();
+
+export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Navigation />
-    </QueryClientProvider>
-  )
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-export default App
