@@ -1,9 +1,9 @@
-import {View, Text} from 'react-native';
-import React, {FC} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {mergeStack} from './Screencollection';
+import { View, Text } from 'react-native'
+import React, { FC } from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import { mergeStack } from './Screencollection'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 const MainNavigator: FC = () => {
   return (
@@ -18,10 +18,10 @@ const MainNavigator: FC = () => {
             name={item.name}
             component={item.component}
           />
-        );
+        )
       })}
     </Stack.Navigator>
-  );
-};
+  )
+}
 
-export default MainNavigator;
+export default MainNavigator

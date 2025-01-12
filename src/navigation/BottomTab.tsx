@@ -1,9 +1,9 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {FC} from 'react';
-import HomeScreen from '../screens/dashboard/HomeScreen';
-import ProfileScreen from '../screens/dashboard/ProfileScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { FC } from 'react'
+import HomeScreen from '../screens/dashboard/HomeScreen'
+import ProfileScreen from '../screens/dashboard/ProfileScreen'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 const BottomTab: FC = () => {
   return (
@@ -11,7 +11,7 @@ const BottomTab: FC = () => {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="profile" component={ProfileScreen} />
     </Tab.Navigator>
-  );
-};
+  )
+}
 
-export default BottomTab;
+export default BottomTab
