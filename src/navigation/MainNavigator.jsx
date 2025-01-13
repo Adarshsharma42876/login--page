@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { authStack, mergeStack } from './Screencollection';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../config/fireBase.config';
+
 import { useUserStore } from '../store';
+import { auth } from '../config/fireBase.config';
 
 const Stack = createStackNavigator();
 
@@ -12,15 +13,20 @@ const MainNavigator = () => {
   const setUser = useUserStore(state => state.setUser);
   const clearUser = useUserStore(state => state.clearUser);
 
-  onAuthStateChanged(auth, user => {
-    console.log(typeof user, 'User signed in:', user);
-    if (user) {
-      setUser(user); // Save user to Zustand
-    } else {
-      console.log('User signed out');
-      clearUser(); // Clear user from Zustand
-    }
-  });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      console.log(typeof user, 'User signed in:====', user);
+      if (user) {
+        setUser(user); // Save user to Zustand
+      } else {
+        console.log('User signed out');
+        clearUser(); // Clear user from Zustand
+      }
+    });
+
+    // Cleanup listener when the component unmounts
+    return () => unsubscribe();
+  }, [setUser, clearUser]);
 
   if (user) {
     return (

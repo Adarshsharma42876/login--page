@@ -50,23 +50,30 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const handlePasswordChange = text => {
-    if (text.length > 7) return; // Restrict password length to exactly 7 characters
+    if (text.length > 10) return; // Restrict password length to exactly 7 characters
     setPassword(text);
-    if (text.length < 7) {
+    if (text.length < 0) {
       setPasswordError('Password must be exactly 7 characters.');
-    } else if (!validatePassword(text)) {
-      setPasswordError(
-        'Password must include an uppercase letter, a number, and a special character.',
-      );
+      // } else if (!validatePassword(text)) {
+      //   setPasswordError(
+      //     'Password must include an uppercase letter, a number, and a special character.',
+      //   );
     } else {
       setPasswordError('');
     }
   };
 
   const handleLogin = async () => {
-    if (!email || !password)
-      return Alert.alert('Validation Error', 'Please fill in all fields.');
-    await signInWithEmailAndPassword(auth, email, password);
+    try {
+      if (!email || !password)
+        return Alert.alert('Validation Error', 'Please fill in all fields.');
+      console.log(password, 'email', email);
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      // console.log('res', res);
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Error', 'Failed to login.');
+    }
     // navigation.navigate('SignUp');
   };
 
@@ -103,7 +110,6 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.language}>English ▼</Text>
       <View style={styles.centerView}>
         <Image source={require('../../assets/game.png')} style={styles.logo} />
         <Text style={styles.title}>Gameon</Text>

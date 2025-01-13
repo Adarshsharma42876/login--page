@@ -1,7 +1,8 @@
-import LoginScreen from '../screens/auth/loginScreen';
-import SignUpScreen from '../screens/auth/signUpScreen';
-import HomeScreen from '../screens/dashboard/HomeScreen';
-import BottomTab from './BottomTab';
+import LoginScreen from "../screens/auth/LoginScreen";
+import SignUpScreen from "../screens/auth/RegisterScreen";
+import HomeScreen from "../screens/dashboard/HomeScreen";
+import BottomTab from "./BottomTab";
+
 
 export const authStack = [
   {
