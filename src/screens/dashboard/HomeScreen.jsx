@@ -3,15 +3,16 @@ import React from 'react';
 import SafeWrapper from '../../components/SafeWrapper';
 import BackButton from '../../components/BackButton';
 import { auth } from '../../config/fireBase.config';
-
+// import Card from '../../components/Card';
 const HomeScreen = () => {
   return (
     <SafeWrapper style={styles.container}>
-      <BackButton />
+      {/* <Card /> */}
+      {/* <BackButton />
       <Text>Hello, Safe Area on iOS and Android!</Text>
       <TouchableOpacity onPress={() => auth.signOut()} style={styles.button}>
         <Text style={styles.text}>Back</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </SafeWrapper>
   );
 };
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   button: {
     backgroundColor: '#007bff',

@@ -1,5 +1,4 @@
-import { View, Text } from 'react-native';
-import React, { FC } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import MainNavigator from './MainNavigator';
 import { navigationRef } from '../utils/NavigationUtils';

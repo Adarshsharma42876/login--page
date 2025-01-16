@@ -1,5 +1,5 @@
 import LoginScreen from "../screens/auth/LoginScreen";
-import SignUpScreen from "../screens/auth/RegisterScreen";
+import SignUpScreen from "../screens/auth/signUpScreen";
 import HomeScreen from "../screens/dashboard/HomeScreen";
 import BottomTab from "./BottomTab";
 

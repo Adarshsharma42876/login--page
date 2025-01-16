@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "799230321610",
+    "project_id": "a1-games-a1a51",
+    "storage_bucket": "a1-games-a1a51.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799230321610:android:57d50174afc7b30dfe2533",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799230321610-dt3nrnjh1emo8ibrv5j2vmp08hd5s284.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgZJFfY8lfLu7o8_6OmhY0NCo7d3vlsGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799230321610-dt3nrnjh1emo8ibrv5j2vmp08hd5s284.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "799230321610-c6rgs2tr0t1ec7qa9hek42j0bhn0v34g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.AwesomeProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -49,11 +49,10 @@ const SignUpScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.language}>English ▼</Text>
       <View style={styles.centerView}>
-        <Image source={require('../../assets/game.png')} style={styles.logo} />
-        <Text style={styles.title}>Gameon</Text>
-        <Text style={styles.subtitle}>Your ultimate gaming hub</Text>
-
-        <Image source={require('../../assets/game.png')} style={styles.logo} />
+        <Image
+          source={require('../../assets/image/game.png')}
+          style={styles.logo}
+        />
         <Text style={styles.title}>Gameon</Text>
         <Text style={styles.subtitle}>Your ultimate gaming hub</Text>
 

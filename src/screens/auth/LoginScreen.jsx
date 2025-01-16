@@ -17,6 +17,8 @@ import {
 } from '@react-native-google-signin/google-signin';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../config/fireBase.config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StorageKeys } from '../../constants';
 
 GoogleSignin.configure({
   webClientId:
@@ -67,11 +69,20 @@ const LoginScreen = ({ navigation }) => {
     try {
       if (!email || !password)
         return Alert.alert('Validation Error', 'Please fill in all fields.');
-      console.log(password, 'email', email);
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      // console.log('res', res);
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      console.log(userCredential);
+      await AsyncStorage.setItem(
+        StorageKeys.USER_PROFILE,
+        JSON.stringify(userCredential._tokenResponse),
+      );
+      navigation.navigate('Home');
     } catch (error) {
-      console.log(error);
+      console.log('auth error ', error);
       Alert.alert('Error', 'Failed to login.');
     }
     // navigation.navigate('SignUp');
@@ -111,7 +122,10 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.centerView}>
-        <Image source={require('../../assets/game.png')} style={styles.logo} />
+        <Image
+          source={require('../../assets/image/game.png')}
+          style={styles.logo}
+        />
         <Text style={styles.title}>Gameon</Text>
         <Text style={styles.subtitle}>Your ultimate gaming hub</Text>
         {/* Email Input */}

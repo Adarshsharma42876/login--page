@@ -1,68 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { authStack, mergeStack } from './Screencollection';
-import { onAuthStateChanged } from 'firebase/auth';
-
-import { useUserStore } from '../store';
-import { auth } from '../config/fireBase.config';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { StorageKeys } from '../constants';
 
 const Stack = createStackNavigator();
 
 const MainNavigator = () => {
-  const user = useUserStore(state => state.user);
-  const setUser = useUserStore(state => state.setUser);
-  const clearUser = useUserStore(state => state.clearUser);
+  const { getItem } = useAsyncStorage(StorageKeys.USER_PROFILE);
+  const [initialRoute, setInitialRoute] = useState('');
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      console.log(typeof user, 'User signed in:====', user);
-      if (user) {
-        setUser(user); // Save user to Zustand
+    getItem((error, result) => {
+      if (result && result.includes('idToken')) {
+        setInitialRoute('Home');
       } else {
-        console.log('User signed out');
-        clearUser(); // Clear user from Zustand
+        setInitialRoute('Login');
       }
     });
+  }, []);
 
-    // Cleanup listener when the component unmounts
-    return () => unsubscribe();
-  }, [setUser, clearUser]);
+  if (!initialRoute) return;
 
-  if (user) {
-    return (
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        {mergeStack.map((item, index) => {
-          return (
-            <Stack.Screen
-              key={index}
-              name={item.name}
-              component={item.component}
-            />
-          );
-        })}
-      </Stack.Navigator>
-    );
-  } else {
-    return (
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        {authStack.map((item, index) => {
-          return (
-            <Stack.Screen
-              key={index}
-              name={item.name}
-              component={item.component}
-            />
-          );
-        })}
-      </Stack.Navigator>
-    );
-  }
+  return (
+    <Stack.Navigator initialRouteName={initialRoute}>
+      {authStack.map(screen => (
+        <Stack.Screen
+          key={screen.name}
+          name={screen.name}
+          component={screen.component}
+        />
+      ))}
+      {mergeStack.map(screen => (
+        <Stack.Screen
+          key={screen.name}
+          name={screen.name}
+          component={screen.component}
+        />
+      ))}
+    </Stack.Navigator>
+  );
 };
 
 export default MainNavigator;
