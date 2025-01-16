@@ -16,6 +16,7 @@ const BottomTab = () => {
         tabBarStyle: styles.tabBarStyle,
         activeTintColor: 'orange',
         inactiveTintColor: '#ccc',
+        headerShown: false,
       }}>
       <Tab.Screen
         name="Home"
