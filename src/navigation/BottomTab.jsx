@@ -5,8 +5,36 @@ import ProfileScreen from '../screens/dashboard/ProfileScreen';
 import CustomIcon from '../components/CustomIcon';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Icons, { icons } from '../components/Icons';
 
 const Tab = createBottomTabNavigator();
+const tabBarIcon = {
+  home: {
+    ico1: 'home',
+    ico2: 'home-outline',
+    type: icons.Ionicons,
+  },
+  plus: {
+    ico1: 'plus',
+    ico2: 'plus',
+    type: icons.Entypo,
+  },
+  user: {
+    ico1: 'user',
+    ico2: 'user-o',
+    type: icons.FontAwesome,
+  },
+  search: {
+    ico1: 'search1',
+    ico2: 'search1',
+    type: icons.AntDesign,
+  },
+  video: {
+    ico1: 'folder-video',
+    ico2: 'folder-video',
+    type: icons.Entypo,
+  },
+};
 
 const BottomTab = () => {
   return (
@@ -23,8 +51,9 @@ const BottomTab = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon
-              name="home"
+            <Icons
+              icon={tabBarIcon.home.type}
+              name={focused ? tabBarIcon.home.ico1 : tabBarIcon.home.ico2}
               size={22}
               color={focused ? '#E37449' : '#ccc'}
             />
@@ -32,12 +61,13 @@ const BottomTab = () => {
         }}
       />
       <Tab.Screen
-        name="Search"
+        name="Video"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon
-              name="search"
+            <Icons
+              icon={tabBarIcon.video.type}
+              name={focused ? tabBarIcon.video.ico1 : tabBarIcon.video.ico2}
               size={22}
               color={focused ? '#E37449' : '#ccc'}
             />
@@ -51,14 +81,15 @@ const BottomTab = () => {
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity style={styles.addPost}>
               <LinearGradient
-                colors={['red', 'orange']}
+                colors={['#F0B42A', '#D73767', '#8B4091', '#5B98C2']}
                 style={styles.addIcon}
-                start={{ x: 0.5, y: 0.0 }}
-                end={{ x: 0.5, y: 1.0 }}>
-                <CustomIcon
-                  name="plus"
-                  size={22}
-                  color={focused ? '#E37449' : '#ccc'}
+                // start={{ x: 0.5, y: 0.0 }}
+              >
+                <Icons
+                  icon={tabBarIcon.plus.type}
+                  name={focused ? tabBarIcon.plus.ico1 : tabBarIcon.plus.ico2}
+                  size={32}
+                  color="#ccc"
                 />
               </LinearGradient>
             </TouchableOpacity>
@@ -66,12 +97,13 @@ const BottomTab = () => {
         }}
       />
       <Tab.Screen
-        name="Video"
+        name="Search"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon
-              name="video"
+            <Icons
+              icon={tabBarIcon.search.type}
+              name={focused ? tabBarIcon.search.ico1 : tabBarIcon.search.ico2}
               size={22}
               color={focused ? '#E37449' : '#ccc'}
             />
@@ -83,8 +115,9 @@ const BottomTab = () => {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon
-              name="user"
+            <Icons
+              icon={tabBarIcon.user.type}
+              name={focused ? tabBarIcon.user.ico1 : tabBarIcon.user.ico2}
               size={22}
               color={focused ? '#E37449' : '#ccc'}
             />
