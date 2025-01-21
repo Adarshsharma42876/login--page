@@ -13,7 +13,7 @@ const MainNavigator = () => {
   useEffect(() => {
     getItem((error, result) => {
       if (result && result.includes('idToken')) {
-        setInitialRoute('Home');
+        setInitialRoute('BottomTab');
       } else {
         setInitialRoute('Login');
       }
@@ -23,7 +23,9 @@ const MainNavigator = () => {
   if (!initialRoute) return;
 
   return (
-    <Stack.Navigator initialRouteName={initialRoute}>
+    <Stack.Navigator
+      initialRouteName={initialRoute}
+      screenOptions={{ headerShown: false }}>
       {authStack.map(screen => (
         <Stack.Screen
           key={screen.name}
