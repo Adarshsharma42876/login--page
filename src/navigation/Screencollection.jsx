@@ -24,10 +24,6 @@ export const dashboardStack = [
     name: 'Home',
     component: HomeScreen,
   },
-  {
-    name: 'Comment',
-    component: CommentScreen,
-  },
 ];
 
 export const mergeStack = [...dashboardStack];

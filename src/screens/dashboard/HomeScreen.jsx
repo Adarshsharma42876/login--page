@@ -1,11 +1,4 @@
-import {
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  View,
-  Pressable,
-} from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, Image, View } from 'react-native';
 import React, { useRef } from 'react';
 import SafeWrapper from '../../components/SafeWrapper';
 import BackButton from '../../components/BackButton';
@@ -18,12 +11,11 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import MyIcons from '../../components/CustomIcon';
+import CustomIcon from '../../components/CustomIcon';
 import { wp } from '../../utils/responsive';
 import LinearGradient from 'react-native-linear-gradient';
 import Icons, { icons } from '../../components/Icons';
 import { data } from '../../constants/constants';
-import { useNavigation } from '@react-navigation/native';
 
 const logo = require('../../assets/gameOnLogo.svg');
 const CONTAINER_HEIGHT = 50;
@@ -47,59 +39,40 @@ const cardIcons = {
 // Sample data for the cards
 
 // Header Component
-const Header = ({ headerStyle }) => {
-  return (
-    <View style={[styles.header, headerStyle]}>
-      <Text style={styles.headerText}>Gameon</Text>
-      <MyIcons name="heart" size={22} color="#E37449" />
-    </View>
-  );
-};
+const Header = ({ headerStyle }) => (
+  <Animated.View style={[styles.header, headerStyle]}>
+    <Text style={styles.headerText}>Gameon</Text>
+    <CustomIcon name="heart" size={22} color="#E37449" fill />
+  </Animated.View>
+);
 
 // Card Icon Component
-const CardIconsComponent = ({ item }) => {
-  const navigation = useNavigation();
-
-  const handleClick = name => {
-    if (name === 'comment') {
-      // console.log(name, id);
-      console.log(name, item.id);
-      navigation.navigate('Comment', { id: item.id });
-    }
-  };
-  return (
-    <View style={styles.funcConainer}>
-      <View style={styles.likeContainer}>
-        {Object.entries(cardIcons).map(([key, icon]) => {
-          if (key !== 'bookmark') {
-            return (
-              <Pressable
-                key={key}
-                onPress={() => {
-                  handleClick(key);
-                }}>
-                <Icons
-                  // Use the key here
-                  icon={icon.type}
-                  name={icon.ico1}
-                  size={22}
-                  color="#FFFFFF"
-                />
-              </Pressable>
-            );
-          }
-          return null; // Don't render anything for the bookmark key
-        })}
-      </View>
-      <Icons
-        icon={cardIcons.bookmark.type}
-        name={cardIcons.bookmark.ico2}
-        size={24}
-        color="#FFFFFF"
-      />
+const CardIconsComponent = () => (
+  <View style={styles.funcConainer}>
+    <View style={styles.likeContainer}>
+      {Object.entries(cardIcons).map(([key, icon]) => {
+        if (key !== 'bookmark') {
+          return (
+            <Icons
+              key={key} // Use the key here
+              icon={icon.type}
+              name={icon.ico1}
+              size={22}
+              color="#FFFFFF"
+            />
+          );
+        }
+        return null; // Don't render anything for the bookmark key
+      })}
     </View>
-  );
-};
+    <Icons
+      icon={cardIcons.bookmark.type}
+      name={cardIcons.bookmark.ico2}
+      size={24}
+      color="#FFFFFF"
+    />
+  </View>
+);
 
 // Card Component
 const Card = ({ item }) => (
@@ -130,7 +103,7 @@ const Card = ({ item }) => (
     </View>
     <Image source={{ uri: item.image }} style={styles.cardImage} />
     <View style={styles.bottomCard}>
-      <CardIconsComponent item={item} />
+      <CardIconsComponent />
       <View style={styles.textContainer}>
         <Text style={styles.text}>Liked by thekamraan and 905,235 others</Text>
       </View>
@@ -186,6 +159,7 @@ const HomeScreen = () => {
         data={data}
         keyExtractor={item => item.title}
         renderItem={({ item }) => <Card item={item} />}
+        contentContainerStyle={styles.scrollContent}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
@@ -197,16 +171,16 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   homeContainer: { flex: 1 },
   header: {
-    // position: 'absolute',
-    // top: 60,
-    // left: 0,
-    // right: 0,
-    // zIndex: 10,
+    position: 'absolute',
+    top: 60,
+    left: 0,
+    right: 0,
+    zIndex: 10,
     backgroundColor: '#333333',
     justifyContent: 'space-between',
     alignItems: 'center',
     elevation: 4,
-    height: '12%',
+    height: CONTAINER_HEIGHT,
     flexDirection: 'row',
     paddingHorizontal: 10,
   },
