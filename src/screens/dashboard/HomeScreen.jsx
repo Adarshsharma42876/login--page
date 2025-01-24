@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   Image,
   View,
-  FlatList,
+  Pressable,
 } from 'react-native';
 import React, { useRef } from 'react';
 import SafeWrapper from '../../components/SafeWrapper';
@@ -18,18 +18,14 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import EvilIcons from 'react-native-vector-icons/FontAwesome5';
+import MyIcons from '../../components/CustomIcon';
 import { wp } from '../../utils/responsive';
 import LinearGradient from 'react-native-linear-gradient';
 import Icons, { icons } from '../../components/Icons';
 import { data } from '../../constants/constants';
+import { useNavigation } from '@react-navigation/native';
 
-// <<<<<<< HEAD
-const logo = require('../../assets/image/gameOnLogo.svg');
-
-// =======
-// const logo = require('../../assets/gameOnLogo.svg');
-// >>>>>>> abfe7c2a0d58abdadea1a72f901ae8b002032839
+const logo = require('../../assets/gameOnLogo.svg');
 const CONTAINER_HEIGHT = 50;
 
 // Card Icons configuration
@@ -51,40 +47,59 @@ const cardIcons = {
 // Sample data for the cards
 
 // Header Component
-const Header = ({ headerStyle }) => (
-  <Animated.View style={[styles.header, headerStyle]}>
-    <Text style={styles.headerText}>Gameon</Text>
-    <CustomIcon name="heart" size={22} color="#E37449" fill />
-  </Animated.View>
-);
+const Header = ({ headerStyle }) => {
+  return (
+    <View style={[styles.header, headerStyle]}>
+      <Text style={styles.headerText}>Gameon</Text>
+      <MyIcons name="heart" size={22} color="#E37449" />
+    </View>
+  );
+};
 
 // Card Icon Component
-const CardIconsComponent = () => (
-  <View style={styles.funcConainer}>
-    <View style={styles.likeContainer}>
-      {Object.entries(cardIcons).map(([key, icon]) => {
-        if (key !== 'bookmark') {
-          return (
-            <Icons
-              key={key} // Use the key here
-              icon={icon.type}
-              name={icon.ico1}
-              size={22}
-              color="#FFFFFF"
-            />
-          );
-        }
-        return null; // Don't render anything for the bookmark key
-      })}
+const CardIconsComponent = ({ item }) => {
+  const navigation = useNavigation();
+
+  const handleClick = name => {
+    if (name === 'comment') {
+      // console.log(name, id);
+      console.log(name, item.id);
+      navigation.navigate('Comment', { id: item.id });
+    }
+  };
+  return (
+    <View style={styles.funcConainer}>
+      <View style={styles.likeContainer}>
+        {Object.entries(cardIcons).map(([key, icon]) => {
+          if (key !== 'bookmark') {
+            return (
+              <Pressable
+                key={key}
+                onPress={() => {
+                  handleClick(key);
+                }}>
+                <Icons
+                  // Use the key here
+                  icon={icon.type}
+                  name={icon.ico1}
+                  size={22}
+                  color="#FFFFFF"
+                />
+              </Pressable>
+            );
+          }
+          return null; // Don't render anything for the bookmark key
+        })}
+      </View>
+      <Icons
+        icon={cardIcons.bookmark.type}
+        name={cardIcons.bookmark.ico2}
+        size={24}
+        color="#FFFFFF"
+      />
     </View>
-    <Icons
-      icon={cardIcons.bookmark.type}
-      name={cardIcons.bookmark.ico2}
-      size={24}
-      color="#FFFFFF"
-    />
-  </View>
-);
+  );
+};
 
 // Card Component
 const Card = ({ item }) => (
@@ -115,7 +130,7 @@ const Card = ({ item }) => (
     </View>
     <Image source={{ uri: item.image }} style={styles.cardImage} />
     <View style={styles.bottomCard}>
-      <CardIconsComponent />
+      <CardIconsComponent item={item} />
       <View style={styles.textContainer}>
         <Text style={styles.text}>Liked by thekamraan and 905,235 others</Text>
       </View>
@@ -164,80 +179,36 @@ const HomeScreen = () => {
     },
   });
 
-  // <<<<<<< HEAD
   return (
-    <View style={styles.homeContainer}>
-      <View style={[styles.header]}>
-        {/* <Image source={logo} style={styles.headerImage} /> */}
-
-        <Text style={styles.headerText}>Gameon</Text>
-        <EvilIcons name="heart" size={22} color="#fff" />
-      </View>
-      <FlatList
+    <SafeWrapper style={styles.homeContainer}>
+      <Header headerStyle={headerStyle} />
+      <Animated.FlatList
         data={data}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Image
-              source={require('../../assets/image/game.png')}
-              style={styles.cardImage}
-            />
-            <View style={styles.bottomCard}>
-              <View style={styles.funcConainer}>
-                <View style={styles.likeContainer}>
-                  <EvilIcons name="heart" size={20} color="#fff" fill />
-                  <EvilIcons name="share" size={20} color="#fff" fill />
-                </View>
-                <EvilIcons name="bookmark" size={20} color="#fff" fill />
-              </View>
-              <View style={styles.textContainer}>
-                <Text style={styles.text}>
-                  Liked by thekamraan and 905,235 others
-                </Text>
-              </View>
-              <View>
-                <Text style={styles.text}>
-                  Pro_Player Start your countdown to the glorious arrival of
-                  Marvel Studios' #Loki...more
-                </Text>
-              </View>
-            </View>
-          </View>
-        )}
-        // =======
-        // <SafeWrapper style={styles.homeContainer}>
-        //   <Header headerStyle={headerStyle} />
-        //   <Animated.FlatList
-        //     data={data}
-        //     keyExtractor={item => item.title}
-        //     renderItem={({ item }) => <Card item={item} />}
-        //     contentContainerStyle={styles.scrollContent}
-        //     onScroll={scrollHandler}
-        //     scrollEventThrottle={16}
-        //     showsVerticalScrollIndicator={false}
-        // {/* >>>>>>> abfe7c2a0d58abdadea1a72f901ae8b002032839 */}
+        keyExtractor={item => item.title}
+        renderItem={({ item }) => <Card item={item} />}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        showsVerticalScrollIndicator={false}
       />
-    </View>
+    </SafeWrapper>
   );
 };
 
 const styles = StyleSheet.create({
-  // <<<<<<< HEAD
-  homeContainer: {
-    flex: 1,
-    backgroundColor: '#333333',
-  },
-  // =======
-  // homeContainer: { flex: 1 },
-  // >>>>>>> abfe7c2a0d58abdadea1a72f901ae8b002032839
+  homeContainer: { flex: 1 },
   header: {
+    // position: 'absolute',
+    // top: 60,
+    // left: 0,
+    // right: 0,
+    // zIndex: 10,
     backgroundColor: '#333333',
     justifyContent: 'space-between',
     alignItems: 'center',
     elevation: 4,
+    height: '12%',
     flexDirection: 'row',
     paddingHorizontal: 10,
-    paddingVertical: 15,
   },
   headerText: {
     fontSize: 32,
@@ -247,21 +218,16 @@ const styles = StyleSheet.create({
   },
   scrollContent: { paddingTop: CONTAINER_HEIGHT },
   cardImage: {
-    width: '95%',
+    width: wp(100),
     height: 220,
     resizeMode: 'cover',
-    marginBottom: 10,
+    marginBottom: 6,
+    paddingHorizontal: 20,
     borderRadius: 30,
-    alignSelf: 'center',
   },
   card: {
-    // <<<<<<< HEAD
-    paddingTop: 16,
-    paddingBottom: 29,
-    // =======
     // paddingTop: 16,
-    // paddingBottom: 24,
-    // >>>>>>> abfe7c2a0d58abdadea1a72f901ae8b002032839
+    paddingBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0A6',
     marginBottom: 16,

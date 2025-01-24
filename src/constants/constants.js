@@ -29,6 +29,7 @@ export const data = [
       'https://st2.depositphotos.com/3310833/7828/v/380/depositphotos_78289624-stock-illustration-flat-hipster-character.jpg',
     title: 'Harry Callum',
     caption: 'Lorem ipsum xyz description',
+    id: '1',
   },
   {
     image:
@@ -37,6 +38,7 @@ export const data = [
       'https://img2.pngio.com/rebecca-borland-commonvision-she-png-600_600.png',
     title: 'Evelyn Kyle',
     caption: 'Lorem ipsum xyz description',
+    id: '2',
   },
   {
     image:
@@ -45,6 +47,7 @@ export const data = [
       'https://image.freepik.com/free-vector/vector-avatar-smiling-man-facial-expression_102172-203.jpg',
     title: 'Thomas Joe',
     caption: 'Lorem ipsum xyz description',
+    id: '3',
   },
   {
     image:
@@ -53,6 +56,7 @@ export const data = [
       'https://www.kindpng.com/picc/m/164-1649662_woman-icon-circle-png-transparent-png.png',
     title: 'Charlotte Rhys',
     caption: 'Lorem ipsum xyz description',
+    id: '4',
   },
   {
     image:
@@ -61,6 +65,7 @@ export const data = [
       'https://images.vexels.com/media/users/3/145908/raw/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
     title: 'George Reece',
     caption: 'Lorem ipsum xyz description',
+    id: '5',
   },
   {
     image:
@@ -69,5 +74,6 @@ export const data = [
       'https://esquimaltmfrc.com/wp-content/uploads/2015/09/flat-faces-icons-circle-woman-9.png',
     title: 'Emma Damian',
     caption: 'Lorem ipsum xyz description',
+    id: '6',
   },
 ];

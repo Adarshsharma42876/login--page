@@ -64,7 +64,7 @@ const BottomTab = () => {
 
       <Tab.Screen
         name="Video"
-        component={HomeScreen}
+        component={Videos}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icons
@@ -100,7 +100,7 @@ const BottomTab = () => {
       />
       <Tab.Screen
         name="Search"
-        component={HomeScreen}
+        component={Search}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icons

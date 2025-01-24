@@ -1,5 +1,6 @@
 import LoginScreen from '../screens/auth/LoginScreen';
 import SignUpScreen from '../screens/auth/signUpScreen';
+import CommentScreen from '../screens/dashboard/CommentScreen';
 import HomeScreen from '../screens/dashboard/HomeScreen';
 import BottomTab from './BottomTab';
 
@@ -22,6 +23,10 @@ export const dashboardStack = [
   {
     name: 'Home',
     component: HomeScreen,
+  },
+  {
+    name: 'Comment',
+    component: CommentScreen,
   },
 ];
 

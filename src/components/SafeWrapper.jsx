@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   safeWrapper: {
     flex: 1,
     backgroundColor: '#333333', // Default background color
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, // Adjust for Android's status bar
+    // paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, // Adjust for Android's status bar
   },
 });
 
