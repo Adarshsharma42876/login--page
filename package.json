@@ -29,6 +29,8 @@
     "react-native-safe-area-context": "^5.0.0",
     "react-native-screens": "^4.4.0",
     "react-native-vector-icons": "^10.2.0",
+    "react-native-video": "^6.9.1",
+    "react-native-video-cache": "^2.7.4",
     "zustand": "^5.0.3"
   },
   "devDependencies": {

@@ -6,6 +6,7 @@ import CustomIcon from '../components/CustomIcon';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icons, { icons } from '../components/Icons';
+import VideoScreen from '../screens/dashboard/VideoScreen';
 
 const Tab = createBottomTabNavigator();
 const tabBarIcon = {
@@ -62,7 +63,7 @@ const BottomTab = () => {
       />
       <Tab.Screen
         name="Video"
-        component={HomeScreen}
+        component={VideoScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icons

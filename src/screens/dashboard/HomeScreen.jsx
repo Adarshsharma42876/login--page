@@ -36,6 +36,7 @@ const cardIcons = {
   share: { ico1: 'send', ico2: 'send', type: icons.MaterialIcons },
 };
 
+
 // Sample data for the cards
 
 // Header Component
@@ -169,7 +170,6 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  homeContainer: { flex: 1 },
   header: {
     position: 'absolute',
     top: 60,

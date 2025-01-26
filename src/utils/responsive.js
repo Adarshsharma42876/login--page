@@ -21,4 +21,7 @@ const sp = fontSize => {
   return Math.round(PixelRatio.roundToNearestPixel(scaledSize));
 };
 
-export { wp, hp, sp };
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+
+export { wp, hp, sp, screenWidth, screenHeight };
