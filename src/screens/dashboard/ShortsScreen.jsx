@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import React, { useRef } from 'react';
-import SafeWrapper from '../../components/SafeWrapper';
 import Video from 'react-native-video';
 import { screenHeight, screenWidth } from '../../utils/responsive';
 import convertToProxyURL from 'react-native-video-cache';

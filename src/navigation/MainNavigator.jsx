@@ -50,6 +50,7 @@ const MainNavigator = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          
         }}>
         {authStack.map((item, index) => {
           return (
